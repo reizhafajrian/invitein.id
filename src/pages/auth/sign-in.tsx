@@ -1,11 +1,11 @@
 /* eslint-disable */
 /*!
-  _   _  ___  ____  ___ ________  _   _   _   _ ___   
+	_   _  ___  ____  ___ ________  _   _   _   _ ___   
  | | | |/ _ \|  _ \|_ _|__  / _ \| \ | | | | | |_ _| 
  | |_| | | | | |_) || |  / / | | |  \| | | | | || | 
  |  _  | |_| |  _ < | | / /| |_| | |\  | | |_| || |
  |_| |_|\___/|_| \_\___/____\___/|_| \_|  \___/|___|
-                                                                                                                                                                                                                                                                                                                                       
+																																																																																																																																																																			 
 =========================================================
 * Horizon UI - v1.1.0
 =========================================================
@@ -21,7 +21,7 @@
 
 */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 // Chakra imports
 import {
 	Box,
@@ -46,6 +46,14 @@ import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { RiEyeCloseLine } from 'react-icons/ri';
+import { sigInWithGoogle } from '../../firebase/auth/signin/google';
+import { currentUser } from '../../firebase/auth/currentuser';
+
+
+
+
+
+
 
 export default function SignIn() {
 	// Chakra color mode
@@ -58,8 +66,13 @@ export default function SignIn() {
 	const googleText = useColorModeValue('navy.700', 'white');
 	const googleHover = useColorModeValue({ bg: 'gray.200' }, { bg: 'whiteAlpha.300' });
 	const googleActive = useColorModeValue({ bg: 'secondaryGray.300' }, { bg: 'whiteAlpha.200' });
-	const [ show, setShow ] = React.useState(false);
+	const [show, setShow] = React.useState(false);
 	const handleClick = () => setShow(!show);
+
+
+
+
+
 	return (
 		<DefaultAuthLayout illustrationBackground={'/img/auth/auth.png'}>
 			<Flex
@@ -104,7 +117,9 @@ export default function SignIn() {
 						fontWeight='500'
 						_hover={googleHover}
 						_active={googleActive}
-						_focus={googleActive}>
+						_focus={googleActive}
+						onClick={sigInWithGoogle}
+					>
 						<Icon as={FcGoogle} w='20px' h='20px' me='10px' />
 						Sign in with Google
 					</Button>
